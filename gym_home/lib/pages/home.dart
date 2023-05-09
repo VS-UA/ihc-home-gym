@@ -48,12 +48,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: ElevatedButton(style: ElevatedButton.styleFrom(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(20),
         ), child: const Text('Login'), onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => LoginPage()),
+            MaterialPageRoute(builder: (context) => const LoginPage()),
           );
           },
         ),
@@ -62,4 +63,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     }
   }
-  
+

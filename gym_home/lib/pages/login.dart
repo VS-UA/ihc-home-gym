@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gym_home/pages/setup.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -27,6 +31,10 @@ class _LoginPageState extends State<LoginPage> {
         // Perform login
       } else {
         // Perform signup
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => UserDataPage()),
+        );
       }
     }
   }
@@ -38,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
         title: Text(_isLoginForm ? 'Login' : 'Sign Up'),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -47,17 +55,17 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) => value!.isEmpty ? 'Email is required' : null,
                 onSaved: (value) => _email = value!.trim(),
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 validator: (value) => value!.isEmpty ? 'Password is required' : null,
                 onSaved: (value) => _password = value!,
               ),
-              SizedBox(height: 12.0),
+              const SizedBox(height: 12.0),
               ElevatedButton(
                 onPressed: _submit,
                 child: Text(_isLoginForm ? 'Login' : 'Sign Up'),
