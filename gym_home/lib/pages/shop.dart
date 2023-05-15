@@ -86,12 +86,9 @@ class _ShopPageState extends State<ShopPage> with AutomaticKeepAliveClientMixin{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('Shopping',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-              )),
+        title: const Center(
+          child: Text('Shopping'
+          ),
         ),
       ),
       body: Column(
@@ -120,21 +117,21 @@ class _ShopPageState extends State<ShopPage> with AutomaticKeepAliveClientMixin{
               },
             ),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Total'),
+            title: const Text('Total'),
             trailing: Text(
                 '($_counter) itens      \$${_totalPrice.toStringAsFixed(2)}'),
           ),
           Container(
             height: 75,
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             child: ElevatedButton(
               onPressed: () {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text('Shopping Cart'),
+                    title: const Text('Shopping Cart'),
                     content: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -159,7 +156,7 @@ class _ShopPageState extends State<ShopPage> with AutomaticKeepAliveClientMixin{
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('CANCEL'),
+                        child: const Text('CANCEL'),
                       ),
                       TextButton(
                         onPressed: () {
@@ -169,16 +166,16 @@ class _ShopPageState extends State<ShopPage> with AutomaticKeepAliveClientMixin{
                           });
                           Navigator.of(context).pop();
                         },
-                        child: Text(
+                        child: const Text(
                             'CONFIRM'), // apertar este botao leva ao menu do app
                       ),
                     ],
                   ),
                 );
               },
-              child: Text(
+              child: const Text(
                 'ADD PRODUCTS TO SHOPPING CART',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 17,
                 ),
               ),
