@@ -1,4 +1,0 @@
-#Tue May 02 11:51:39 WEST 2023
-base.0=C\:\\Users\\vasco\\Documents\\GitHub\\ihc-home-gym\\flutter_home_gym\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
