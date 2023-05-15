@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_home/pages/goal.dart';
 
 class UserDataPage extends StatefulWidget {
   const UserDataPage({super.key});
@@ -26,6 +27,10 @@ class _UserDataPageState extends State<UserDataPage> {
     if (form!.validate()) {
       form.save();
       // Do something with the entered parameters
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ObjectivesPage()),
+      );
     }
   }
 
@@ -53,7 +58,7 @@ class _UserDataPageState extends State<UserDataPage> {
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     'Gender:',
                   ),
                   Expanded(

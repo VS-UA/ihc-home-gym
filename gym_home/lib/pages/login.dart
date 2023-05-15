@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_home/pages/home.dart';
 import 'package:gym_home/pages/setup.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,11 +30,17 @@ class _LoginPageState extends State<LoginPage> {
       // Authenticate user with entered email and password
       if (_isLoginForm) {
         // Perform login
+        
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MyHomePage(title: 'HomeGym',)),
+        );
+        
       } else {
         // Perform signup
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => UserDataPage()),
+          MaterialPageRoute(builder: (context) => const UserDataPage()),
         );
       }
     }
