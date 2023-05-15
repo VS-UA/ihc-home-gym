@@ -24,8 +24,8 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
+          children: const [
+            Text(
               'Welcome Home',
             ),
           ],
