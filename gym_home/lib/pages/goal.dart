@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:toggle_switch/toggle_switch.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'home.dart';
 
 class GoalDataPage extends StatefulWidget {
   final VoidCallback onPrevious;
@@ -15,6 +19,8 @@ class GoalDataPage extends StatefulWidget {
   _GoalDataPageState createState() => _GoalDataPageState();
 }
 
+final List<int> number_of_days = [1, 2, 3, 4, 5, 6, 7];
+
 class _GoalDataPageState extends State<GoalDataPage>
     with AutomaticKeepAliveClientMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -22,13 +28,33 @@ class _GoalDataPageState extends State<GoalDataPage>
   bool checkboxValue2 = false;
   bool checkboxValue3 = false;
   bool checkboxValue4 = false;
+  int dropdownValue = number_of_days.first;
+  int _toggleIndex = 1;
 
   void _submit() {
     final form = _formKey.currentState;
     if (form!.validate()) {
       form.save();
       // Do something with the entered parameters
-      widget.onNext();
+      if (_toggleIndex == 1) {
+        const snackBar = SnackBar(
+          content: Text(
+            'Account created succesfully!',
+            textAlign: TextAlign.center,
+          ),
+        );
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+
+        // Find the ScaffoldMessenger in the widget tree
+        // and use it to show a SnackBar.
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        widget.onNext();
+      }
     }
   }
 
@@ -43,7 +69,7 @@ class _GoalDataPageState extends State<GoalDataPage>
             widget.onPrevious();
           },
         ),
-        title: const Center(child: Text('Goals')),
+        title: const Text('Objectives'),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_forward),
@@ -59,53 +85,99 @@ class _GoalDataPageState extends State<GoalDataPage>
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              const Padding(
-                padding: EdgeInsetsDirectional.all(100),
-                child: Text(
-                  'Already Owned Equipment',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                  ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(20),
+                ),
+                child: const Text('Weight loss'),
+                onPressed: () {
+                  _submit();
+                },
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(20),
+                ),
+                child: const Text('Muscle mass'),
+                onPressed: () {
+                  _submit();
+                },
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(20),
+                ),
+                child: const Text('Fitness'),
+                onPressed: () {
+                  _submit();
+                },
+              ),
+              const Text(
+                'How many days per week do you want to train?',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
+              ),
+              DropdownButton<int>(
+                value: dropdownValue,
+                icon: const Icon(Icons.arrow_downward_rounded),
+                elevation: 4,
+                style: const TextStyle(color: Colors.black),
+                underline: Container(
+                  height: 2,
+                  color: Colors.black,
+                ),
+                onChanged: (int? value) {
+                  setState(() {
+                    dropdownValue = value!;
+                  });
+                },
+                items: number_of_days.map<DropdownMenuItem<int>>((int value) {
+                  return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text(value.toString()),
+                  );
+                }).toList(),
+              ),
+              SizedBox(
+                height: 250,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 15.0),
+                      child: Text(
+                        'Do you have equipment?',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    ToggleSwitch(
+                      customWidths: const [50.0, 50.0],
+                      cornerRadius: 20.0,
+                      activeBgColors: const [
+                        [Colors.cyan],
+                        [Colors.redAccent]
+                      ],
+                      activeFgColor: Colors.white,
+                      inactiveBgColor: Colors.grey,
+                      inactiveFgColor: Colors.white,
+                      totalSwitches: 2,
+                      labels: const ['', ''],
+                      icons: const [
+                        FontAwesomeIcons.check,
+                        FontAwesomeIcons.times
+                      ],
+                      initialLabelIndex: _toggleIndex,
+                      onToggle: (index) {
+                        setState(() {
+                          _toggleIndex = index!;
+                        });
+                        print('switched to: $index');
+                      },
+                    ),
+                  ],
                 ),
               ),
-              CheckboxListTile(
-                title: const Text('Dumbbells'),
-                value: checkboxValue1,
-                onChanged: (bool? value) {
-                  setState(() {
-                    checkboxValue1 = value!;
-                  });
-                },
-              ),
-              CheckboxListTile(
-                title: const Text('Treadmill'),
-                value: checkboxValue2,
-                onChanged: (bool? value) {
-                  setState(() {
-                    checkboxValue2 = value!;
-                  });
-                },
-              ),
-              CheckboxListTile(
-                title: const Text('Bench'),
-                value: checkboxValue3,
-                onChanged: (bool? value) {
-                  setState(() {
-                    checkboxValue3 = value!;
-                  });
-                },
-              ),
-              CheckboxListTile(
-                title: const Text('Fixed Bar'),
-                value: checkboxValue4,
-                onChanged: (bool? value) {
-                  setState(() {
-                    checkboxValue4 = value!;
-                  });
-                },
-              ),
-              const SizedBox(height: 12.0),
             ],
           ),
         ),

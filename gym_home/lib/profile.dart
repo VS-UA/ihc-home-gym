@@ -19,6 +19,7 @@ class UserProfileForm extends StatefulWidget {
   const UserProfileForm({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _UserProfileFormState createState() => _UserProfileFormState();
 }
 
@@ -132,7 +133,7 @@ class _UserProfileFormState extends State<UserProfileForm> {
                       // Save user profile to database
                     }
                   },
-                  child: Text('Save'),
+                  child: const Text('Save'),
                 ),
               ),
             ],
