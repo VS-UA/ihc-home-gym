@@ -2,19 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class EquipmentDataPage extends StatefulWidget {
-  final VoidCallback onPrevious;
-  final VoidCallback onNext;
-
-  const EquipmentDataPage({
-    super.key,
-    required this.onPrevious,
-    required this.onNext,
-  });
+class ShopPage extends StatefulWidget {
+  const ShopPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _EquipmentDataPageState createState() => _EquipmentDataPageState();
+  _ShopPageState createState() => _ShopPageState();
 }
 
 class Item {
@@ -25,7 +18,7 @@ class Item {
   const Item({required this.name, required this.image, required this.price});
 }
 
-class _EquipmentDataPageState extends State<EquipmentDataPage>
+class _ShopPageState extends State<ShopPage>
     with AutomaticKeepAliveClientMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool checkboxValue1 = false;
@@ -77,7 +70,7 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
     if (form!.validate()) {
       form.save();
       // Do something with the entered parameters
-      widget.onNext();
+      Navigator.pop(context);
     }
   }
 
@@ -85,13 +78,7 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('Shopping',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-              )),
-        ),
+        title: const Text('Shopping'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -108,7 +95,7 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
                     width: 60,
                   ),
                   title: Text(item.name),
-                  trailing: Text('\$${item.price}'),
+                  trailing: Text('€ ${item.price}'),
                   onTap: () {
                     setState(() {
                       _cartItems.add(item);
@@ -147,7 +134,7 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
                                   width: 40,
                                 ),
                                 title: Text(item.name),
-                                trailing: Text('\$${item.price}'),
+                                trailing: Text('€ ${item.price}'),
                               ),
                             )
                             .toList(),
@@ -158,7 +145,7 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('CANCEL'),
+                        child: const Text('CANCEL'),
                       ),
                       TextButton(
                         onPressed: () {
@@ -168,18 +155,16 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
                           });
                           Navigator.of(context).pop();
                         },
-                        child: Text(
+                        child: const Text(
                             'CONFIRM'), // apertar este botao leva ao menu do app
                       ),
                     ],
                   ),
                 );
               },
-              child: Text(
+              child: const Text(
                 'ADD PRODUCTS TO SHOPPING CART',
-                style: const TextStyle(
-                  fontSize: 17,
-                ),
+                style: TextStyle(fontSize: 17),
               ),
             ),
           ),

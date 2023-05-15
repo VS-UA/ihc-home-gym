@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_home/pages/home.dart';
 import 'package:gym_home/pages/bottom_bar.dart';
-import 'package:gym_home/pages/shop.dart';
+import 'package:gym_home/pages/shopping.dart';
 import 'package:gym_home/pages/workouts.dart';
 
 class TrackingPage extends StatefulWidget {
@@ -11,7 +11,7 @@ class TrackingPage extends StatefulWidget {
   State<TrackingPage> createState() => _TrackingPageState();
 }
 
-class _TrackingPageState extends State<TrackingPage>{
+class _TrackingPageState extends State<TrackingPage> {
   int _index = 1;
 
   final List<Widget> _pages = [
@@ -21,16 +21,15 @@ class _TrackingPageState extends State<TrackingPage>{
     const ShopPage(),
   ];
 
-
   void _submit() {
-    if(_index != 1) {
+    if (_index != 1) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => _pages[_index]),
       );
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +46,8 @@ class _TrackingPageState extends State<TrackingPage>{
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar( // Use the BottomNavBar widget
+      bottomNavigationBar: BottomNavBar(
+        // Use the BottomNavBar widget
         currentIndex: _index,
         onTap: (int value) {
           setState(() {

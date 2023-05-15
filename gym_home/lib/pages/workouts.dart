@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_home/pages/home.dart';
 import 'package:gym_home/pages/bottom_bar.dart';
-import 'package:gym_home/pages/shop.dart';
+import 'package:gym_home/pages/shopping.dart';
 import 'package:gym_home/pages/tracking.dart';
 
 class WorkoutsPage extends StatefulWidget {
@@ -21,9 +21,8 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
     const ShopPage(),
   ];
 
-
   void _submit() {
-    if(_index != 2) {
+    if (_index != 2) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => _pages[_index]),
@@ -71,15 +70,14 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
             const Text("5 sets of 14-16 reps"),
             const Text("\n"),
           ],
-
         ],
       ),
       actions: <Widget>[
         ElevatedButton(
-          onPressed: (){
-            Navigator.of(context).pop();
-          }, 
-          child: const Text('Start')),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Start')),
         ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -106,7 +104,8 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
               onTap: () {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => _buildPopupDialog(context, 1),
+                  builder: (BuildContext context) =>
+                      _buildPopupDialog(context, 1),
                 );
               },
             ),
@@ -116,7 +115,8 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
               onTap: () {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => _buildPopupDialog(context, 2),
+                  builder: (BuildContext context) =>
+                      _buildPopupDialog(context, 2),
                 );
               },
             ),
@@ -126,14 +126,16 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
               onTap: () {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => _buildPopupDialog(context, 3),
+                  builder: (BuildContext context) =>
+                      _buildPopupDialog(context, 3),
                 );
               },
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar( // Use the BottomNavBar widget
+      bottomNavigationBar: BottomNavBar(
+        // Use the BottomNavBar widget
         currentIndex: _index,
         onTap: (int value) {
           setState(() {
