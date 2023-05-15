@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class UserDataPage extends StatefulWidget {
-  const UserDataPage({super.key});
+  final VoidCallback onPrevious;
+  final VoidCallback onNext;
+
+  const UserDataPage({
+    super.key,
+    required this.onPrevious,
+    required this.onNext,
+  });
 
   @override
   // ignore: library_private_types_in_public_api
@@ -12,7 +19,8 @@ enum UserGenders { M, F }
 
 final List<String> level = ['Beginner', 'Intermediate', 'Advanced'];
 
-class _UserDataPageState extends State<UserDataPage> {
+class _UserDataPageState extends State<UserDataPage>
+    with AutomaticKeepAliveClientMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _name = '';
   UserGenders? _gender;
@@ -26,16 +34,28 @@ class _UserDataPageState extends State<UserDataPage> {
     if (form!.validate()) {
       form.save();
       // Do something with the entered parameters
+      widget.onNext();
     }
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Criar conta'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            widget.onPrevious();
+          },
+        ),
+        title: const Center(child: Text('Personal data')),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.arrow_forward),
+            onPressed: _submit,
+          )
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -48,12 +68,13 @@ class _UserDataPageState extends State<UserDataPage> {
               TextFormField(
                 keyboardType: TextInputType.name,
                 decoration: const InputDecoration(labelText: 'Name'),
-                validator: (value) => value!.isEmpty ? 'Name is required' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Name is required' : null,
                 onSaved: (value) => _name = value!,
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     'Gender:',
                   ),
                   Expanded(
@@ -89,15 +110,20 @@ class _UserDataPageState extends State<UserDataPage> {
                 onSaved: (value) => _age = int.parse(value!),
               ),
               TextFormField(
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(labelText: 'Weight (in kg)'),
-                validator: (value) => value!.isEmpty ? 'Weight is required' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Weight is required' : null,
                 onSaved: (value) => _weight = double.parse(value!),
               ),
               TextFormField(
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                decoration: const InputDecoration(labelText: 'Height (in meters)'),
-                validator: (value) => value!.isEmpty ? 'Height is required' : null,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                decoration:
+                    const InputDecoration(labelText: 'Height (in meters)'),
+                validator: (value) =>
+                    value!.isEmpty ? 'Height is required' : null,
                 onSaved: (value) => _height = double.parse(value!),
               ),
               DropdownButton(
@@ -114,7 +140,7 @@ class _UserDataPageState extends State<UserDataPage> {
                     dropdownValue = value!;
                   });
                 },
-                items: level.map<DropdownMenuItem<String>>((String value){
+                items: level.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -122,14 +148,13 @@ class _UserDataPageState extends State<UserDataPage> {
                 }).toList(),
               ),
               const SizedBox(height: 12.0),
-              ElevatedButton(
-                onPressed: _submit,
-                child: const Text('Submit'),
-              ),
             ],
           ),
         ),
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

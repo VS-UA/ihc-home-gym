@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 
-class OwnedEquipment extends StatefulWidget {
+class GoalDataPage extends StatefulWidget {
+  final VoidCallback onPrevious;
+  final VoidCallback onNext;
+
+  const GoalDataPage({
+    super.key,
+    required this.onPrevious,
+    required this.onNext,
+  });
+
   @override
   // ignore: library_private_types_in_public_api
-  _OwnedEquipmentState createState() => _OwnedEquipmentState();
+  _GoalDataPageState createState() => _GoalDataPageState();
 }
 
-class _OwnedEquipmentState extends State<OwnedEquipment> {
+class _GoalDataPageState extends State<GoalDataPage>
+    with AutomaticKeepAliveClientMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool checkboxValue1 = false;
   bool checkboxValue2 = false;
@@ -18,14 +28,28 @@ class _OwnedEquipmentState extends State<OwnedEquipment> {
     if (form!.validate()) {
       form.save();
       // Do something with the entered parameters
+      widget.onNext();
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Criar conta'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            widget.onPrevious();
+          },
+        ),
+        title: const Center(child: Text('Goals')),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.arrow_forward),
+            onPressed: _submit,
+          )
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -35,7 +59,7 @@ class _OwnedEquipmentState extends State<OwnedEquipment> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Padding(
+              const Padding(
                 padding: EdgeInsetsDirectional.all(100),
                 child: Text(
                   'Already Owned Equipment',
@@ -82,14 +106,13 @@ class _OwnedEquipmentState extends State<OwnedEquipment> {
                 },
               ),
               const SizedBox(height: 12.0),
-              ElevatedButton(
-                onPressed: _submit,
-                child: const Text('Submit'),
-              ),
             ],
           ),
         ),
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

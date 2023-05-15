@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gym_home/pages/register.dart';
 import 'package:gym_home/pages/setup.dart';
+
+import 'home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -29,11 +32,15 @@ class _LoginPageState extends State<LoginPage> {
       // Authenticate user with entered email and password
       if (_isLoginForm) {
         // Perform login
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
       } else {
         // Perform signup
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => UserDataPage()),
+          MaterialPageRoute(builder: (context) => RegisterPage()),
         );
       }
     }
@@ -56,13 +63,15 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(labelText: 'Email'),
-                validator: (value) => value!.isEmpty ? 'Email is required' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Email is required' : null,
                 onSaved: (value) => _email = value!.trim(),
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
-                validator: (value) => value!.isEmpty ? 'Password is required' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Password is required' : null,
                 onSaved: (value) => _password = value!,
               ),
               const SizedBox(height: 12.0),
@@ -72,7 +81,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextButton(
                 onPressed: _toggleFormMode,
-                child: Text(_isLoginForm ? 'Create an account' : 'Already have an account'),
+                child: Text(_isLoginForm
+                    ? 'Create an account'
+                    : 'Already have an account'),
               ),
             ],
           ),
