@@ -134,22 +134,24 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
                   context: context,
                   builder: (context) => AlertDialog(
                     title: Text('Shopping Cart'),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: _cartItems
-                          .map(
-                            (item) => ListTile(
-                              leading: Image.network(
-                                item.image,
-                                height: 40,
-                                width: 40,
+                    content: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: _cartItems
+                            .map(
+                              (item) => ListTile(
+                                leading: Image.network(
+                                  item.image,
+                                  height: 40,
+                                  width: 40,
+                                ),
+                                title: Text(item.name),
+                                trailing: Text('\$${item.price}'),
                               ),
-                              title: Text(item.name),
-                              trailing: Text('\$${item.price}'),
-                            ),
-                          )
-                          .toList(),
+                            )
+                            .toList(),
+                      ),
                     ),
                     actions: [
                       TextButton(
