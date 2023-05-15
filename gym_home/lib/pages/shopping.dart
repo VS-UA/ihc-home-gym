@@ -85,7 +85,13 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shopping'),
+        title: Center(
+          child: Text('Shopping',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+              )),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -170,12 +176,26 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
               child: Text(
                 'ADD PRODUCTS TO SHOPPING CART',
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 17,
                 ),
               ),
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: "Tracking",
+          ),
+        ],
+        backgroundColor: Colors.orange,
+        selectedItemColor: Colors.black,
       ),
     );
   }
