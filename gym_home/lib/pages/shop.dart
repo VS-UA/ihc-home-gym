@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'package:gym_home/pages/home.dart';
+import 'package:gym_home/pages/bottom_bar.dart';
+import 'package:gym_home/pages/tracking.dart';
+import 'package:gym_home/pages/workouts.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _ShopPageState createState() => _ShopPageState();
+  State<ShopPage> createState() => _ShopPageState();
 }
 
 class Item {
@@ -27,6 +28,11 @@ class _ShopPageState extends State<ShopPage>
   bool checkboxValue4 = false;
 
   int _counter = 0;
+  int _index = 3;
+
+  List<Item> _cartItems = [];
+
+  double get _totalPrice => _cartItems.fold(0, (sum, item) => sum + item.price);
 
   final List<Item> _items = [
     const Item(
@@ -55,9 +61,12 @@ class _ShopPageState extends State<ShopPage>
     ),
   ];
 
-  List<Item> _cartItems = [];
-
-  double get _totalPrice => _cartItems.fold(0, (sum, item) => sum + item.price);
+  final List<Widget> _pages = [
+    const HomePage(),
+    const TrackingPage(),
+    const WorkoutsPage(),
+    const ShopPage(),
+  ];
 
   void _incrementCounter() {
     setState(() {
@@ -66,11 +75,11 @@ class _ShopPageState extends State<ShopPage>
   }
 
   void _submit() {
-    final form = _formKey.currentState;
-    if (form!.validate()) {
-      form.save();
-      // Do something with the entered parameters
-      Navigator.pop(context);
+    if (_index != 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => _pages[_index]),
+      );
     }
   }
 
@@ -78,7 +87,9 @@ class _ShopPageState extends State<ShopPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shopping'),
+        title: const Center(
+          child: Text('Shopping'),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -106,21 +117,21 @@ class _ShopPageState extends State<ShopPage>
               },
             ),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Total'),
+            title: const Text('Total'),
             trailing: Text(
-                '($_counter) itens      \$${_totalPrice.toStringAsFixed(2)}'),
+                '($_counter) itens      € ${_totalPrice.toStringAsFixed(2)}'),
           ),
           Container(
             height: 75,
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             child: ElevatedButton(
               onPressed: () {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text('Shopping Cart'),
+                    title: const Text('Shopping Cart'),
                     content: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -164,25 +175,23 @@ class _ShopPageState extends State<ShopPage>
               },
               child: const Text(
                 'ADD PRODUCTS TO SHOPPING CART',
-                style: TextStyle(fontSize: 17),
+                style: TextStyle(
+                  fontSize: 17,
+                ),
               ),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart),
-            label: "Tracking",
-          ),
-        ],
-        backgroundColor: Colors.orange,
-        selectedItemColor: Colors.black,
+      bottomNavigationBar: BottomNavBar(
+        // Use the BottomNavBar widget
+        currentIndex: _index,
+        onTap: (int value) {
+          setState(() {
+            _index = value;
+          });
+          _submit();
+        },
       ),
     );
   }

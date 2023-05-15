@@ -24,6 +24,26 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
   bool checkboxValue4 = false;
   bool checkboxValue5 = false;
 
+  void showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Alert"),
+          content: const Text("Please select at least one item."),
+          actions: [
+            TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _submit() {
     final form = _formKey.currentState;
     if (form!.validate()) {
@@ -31,6 +51,9 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
       // Do something with the entered parameters
       if(checkboxValue1 || checkboxValue2 || checkboxValue3 || checkboxValue4 || checkboxValue5) {
         widget.onNext();
+      }
+      else{
+        showAlert(context);
       }
     }
   }

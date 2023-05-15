@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_home/pages/home.dart';
 import 'package:gym_home/pages/bottom_bar.dart';
-import 'package:gym_home/pages/shopping.dart';
+import 'package:gym_home/pages/shop.dart';
 import 'package:gym_home/pages/workouts.dart';
 
 class TrackingPage extends StatefulWidget {

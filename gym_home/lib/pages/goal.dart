@@ -30,14 +30,15 @@ class _GoalDataPageState extends State<GoalDataPage>
   bool checkboxValue3 = false;
   bool checkboxValue4 = false;
   int dropdownValue = number_of_days.first;
-  int _toggleIndex = 1;
+  int _equipmentIndex = 1;
+  int _goalIndex = 0;
 
   void _submit() {
     final form = _formKey.currentState;
     if (form!.validate()) {
       form.save();
       // Do something with the entered parameters
-      if (_toggleIndex == 1) {
+      if (_equipmentIndex == 1) {
         const snackBar = SnackBar(
           content: Text(
             'Account created succesfully!',
@@ -118,7 +119,7 @@ class _GoalDataPageState extends State<GoalDataPage>
                 minWidth: 150.0,
                 radiusStyle: true,
                 cornerRadius: 20.0,
-                initialLabelIndex: 0,
+                initialLabelIndex: _goalIndex,
                 totalSwitches: 3,
                 activeBgColors: const [
                   [Colors.lightBlue],
@@ -132,6 +133,9 @@ class _GoalDataPageState extends State<GoalDataPage>
                 ],
                 labels: const ['Weight loss', 'Muscle mass', 'Fitness'],
                 onToggle: (index) {
+                  setState(() {
+                    _goalIndex = index!;
+                  });
                 },
               ),
               const SizedBox(
@@ -165,7 +169,6 @@ class _GoalDataPageState extends State<GoalDataPage>
                   }).toList(),
                 ),
               ),
-              
               SizedBox(
                 height: 250,
                 child: Row(
@@ -195,10 +198,10 @@ class _GoalDataPageState extends State<GoalDataPage>
                         FontAwesomeIcons.check,
                         FontAwesomeIcons.times
                       ],
-                      initialLabelIndex: _toggleIndex,
+                      initialLabelIndex: _equipmentIndex,
                       onToggle: (index) {
                         setState(() {
-                          _toggleIndex = index!;
+                          _equipmentIndex = index!;
                         });
                       },
                     ),
