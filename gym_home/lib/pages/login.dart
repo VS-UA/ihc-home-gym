@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gym_home/pages/register.dart';
-import 'package:gym_home/pages/setup.dart';
-
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,6 +13,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isLoginForm = true;
+  // ignore: unused_field
   String _email = '', _password = '';
 
   // Function to switch between login and signup form
@@ -34,13 +33,13 @@ class _LoginPageState extends State<LoginPage> {
         // Perform login
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       } else {
         // Perform signup
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => RegisterPage()),
+          MaterialPageRoute(builder: (context) => const RegisterPage()),
         );
       }
     }

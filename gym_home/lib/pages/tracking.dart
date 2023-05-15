@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gym_home/pages/home.dart';
 import 'package:gym_home/pages/bottom_bar.dart';
 import 'package:gym_home/pages/shop.dart';
-import 'package:gym_home/pages/tracking.dart';
 import 'package:gym_home/pages/workouts.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class TrackingPage extends StatefulWidget {
+  const TrackingPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<TrackingPage> createState() => _TrackingPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int _index = 0;
+class _TrackingPageState extends State<TrackingPage>{
+  int _index = 1;
 
   final List<Widget> _pages = [
     const HomePage(),
@@ -23,27 +23,26 @@ class _HomePageState extends State<HomePage> {
 
 
   void _submit() {
-    if(_index != 0) {
+    if(_index != 1) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => _pages[_index]),
       );
     }
   }
-
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("HomeGym"),
+        title: const Text("Tracking"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text(
-              'Welcome Home',
+              'Tracking',
             ),
           ],
         ),

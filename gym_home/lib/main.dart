@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gym_home/pages/login.dart';
-import 'pages/home.dart';
 
 void main() {
   runApp(const MyApp());

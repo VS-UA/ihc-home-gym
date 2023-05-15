@@ -19,6 +19,7 @@ class GoalDataPage extends StatefulWidget {
   _GoalDataPageState createState() => _GoalDataPageState();
 }
 
+// ignore: non_constant_identifier_names
 final List<int> number_of_days = [1, 2, 3, 4, 5, 6, 7];
 
 class _GoalDataPageState extends State<GoalDataPage>
@@ -46,7 +47,7 @@ class _GoalDataPageState extends State<GoalDataPage>
 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
 
         // Find the ScaffoldMessenger in the widget tree
@@ -83,61 +84,88 @@ class _GoalDataPageState extends State<GoalDataPage>
           key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                ),
-                child: const Text('Weight loss'),
-                onPressed: () {
-                  _submit();
+              const Text(
+                'What is your goal?',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              ToggleSwitch(
+                activeBorders: [
+                  Border.all(
+                    color: Colors.blue,
+                    width: 3.0,
+                  ),
+                  Border.all(
+                    color: Colors.yellow.shade700,
+                    width: 3.0,
+                  ),
+                  Border.all(
+                    color: Colors.deepOrangeAccent,
+                    width: 3.0,
+                  ),
+                  Border.all(
+                    color: Colors.blue.shade500,
+                    width: 3.0,
+                  ),
+                ],
+                activeFgColor: Colors.black54,
+                isVertical: true,
+                minWidth: 150.0,
+                radiusStyle: true,
+                cornerRadius: 20.0,
+                initialLabelIndex: 0,
+                totalSwitches: 3,
+                activeBgColors: const [
+                  [Colors.lightBlue],
+                  [Colors.yellow],
+                  [Colors.orange],
+                ],
+                icons: const [
+                  Icons.monitor_weight_outlined,
+                  Icons.fitness_center_outlined,
+                  Icons.directions_run_outlined,
+                ],
+                labels: const ['Weight loss', 'Muscle mass', 'Fitness'],
+                onToggle: (index) {
                 },
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                ),
-                child: const Text('Muscle mass'),
-                onPressed: () {
-                  _submit();
-                },
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                ),
-                child: const Text('Fitness'),
-                onPressed: () {
-                  _submit();
-                },
+              const SizedBox(
+                height: 80,
               ),
               const Text(
                 'How many days per week do you want to train?',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16),
               ),
-              DropdownButton<int>(
-                value: dropdownValue,
-                icon: const Icon(Icons.arrow_downward_rounded),
-                elevation: 4,
-                style: const TextStyle(color: Colors.black),
-                underline: Container(
-                  height: 2,
-                  color: Colors.black,
+              Center(
+                child: DropdownButton<int>(
+                  value: dropdownValue,
+                  icon: const Icon(Icons.arrow_drop_down),
+                  elevation: 4,
+                  style: const TextStyle(color: Colors.black),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.black,
+                  ),
+                  onChanged: (int? value) {
+                    setState(() {
+                      dropdownValue = value!;
+                    });
+                  },
+                  items: number_of_days.map<DropdownMenuItem<int>>((int value) {
+                    return DropdownMenuItem<int>(
+                      value: value,
+                      child: Text(value.toString()),
+                    );
+                  }).toList(),
                 ),
-                onChanged: (int? value) {
-                  setState(() {
-                    dropdownValue = value!;
-                  });
-                },
-                items: number_of_days.map<DropdownMenuItem<int>>((int value) {
-                  return DropdownMenuItem<int>(
-                    value: value,
-                    child: Text(value.toString()),
-                  );
-                }).toList(),
               ),
+              
               SizedBox(
                 height: 250,
                 child: Row(
@@ -172,7 +200,6 @@ class _GoalDataPageState extends State<GoalDataPage>
                         setState(() {
                           _toggleIndex = index!;
                         });
-                        print('switched to: $index');
                       },
                     ),
                   ],

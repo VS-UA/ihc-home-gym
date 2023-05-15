@@ -69,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => const HomePage()),
             );
 
             // Find the ScaffoldMessenger in the widget tree

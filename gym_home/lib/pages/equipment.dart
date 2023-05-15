@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 class EquipmentDataPage extends StatefulWidget {
   final VoidCallback onPrevious;
@@ -24,13 +22,16 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
   bool checkboxValue2 = false;
   bool checkboxValue3 = false;
   bool checkboxValue4 = false;
+  bool checkboxValue5 = false;
 
   void _submit() {
     final form = _formKey.currentState;
     if (form!.validate()) {
       form.save();
       // Do something with the entered parameters
-      widget.onNext();
+      if(checkboxValue1 || checkboxValue2 || checkboxValue3 || checkboxValue4 || checkboxValue5) {
+        widget.onNext();
+      }
     }
   }
 
@@ -106,6 +107,24 @@ class _EquipmentDataPageState extends State<EquipmentDataPage>
                     checkboxValue4 = value!;
                   });
                 },
+              ),
+              CheckboxListTile(
+                title: const Text('Other'),
+                value: checkboxValue5,
+                onChanged: (bool? value) {
+                  setState(() {
+                    checkboxValue5 = value!;
+                  });
+                },
+              ),
+              Visibility(
+                visible: checkboxValue5,
+                child: const TextField(
+                  decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Equipment:',
+                  ),
+                ),
               ),
               const SizedBox(height: 12.0),
             ],
