@@ -93,6 +93,7 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Workouts"),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(

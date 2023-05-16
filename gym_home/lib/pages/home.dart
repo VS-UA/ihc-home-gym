@@ -4,6 +4,8 @@ import 'package:gym_home/pages/shop.dart';
 import 'package:gym_home/pages/tracking.dart';
 import 'package:gym_home/pages/workouts.dart';
 
+import '../components/slider.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -35,15 +37,96 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("HomeGym"),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              'Welcome Home',
-            ),
-          ],
+        child: Container(
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Text(
+                  'Trending exercises',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const HomeSlider(
+                items: [
+                  Item(
+                    name: 'Jumping Jacks',
+                    image: 'assets/jumping-jacks.jpeg',
+                    price: 0,
+                  ),
+                  Item(
+                    name: 'Lying Legs Raise',
+                    image: 'assets/lying-legs-raise.jpg',
+                    price: 0,
+                  ),
+                  Item(
+                    name: 'Push-ups',
+                    image: 'assets/push-ups.jpg',
+                    price: 0,
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Text(
+                  'Meals',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const HomeSlider(
+                items: [
+                  Item(
+                    name: 'Jumping Jacks',
+                    image: 'assets/jumping-jacks.jpeg',
+                    price: 0,
+                  ),
+                  Item(
+                    name: 'Jumping Jacks',
+                    image: 'assets/jumping-jacks.jpeg',
+                    price: 0,
+                  ),
+                  Item(
+                    name: 'Jumping Jacks',
+                    image: 'assets/jumping-jacks.jpeg',
+                    price: 0,
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Text(
+                  'Equipment for you',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const HomeSlider(
+                items: [
+                  Item(
+                    name: 'Jumping Jacks',
+                    image: 'assets/jumping-jacks.jpeg',
+                    price: 0,
+                  ),
+                  Item(
+                    name: 'Jumping Jacks',
+                    image: 'assets/jumping-jacks.jpeg',
+                    price: 0,
+                  ),
+                  Item(
+                    name: 'Jumping Jacks',
+                    image: 'assets/jumping-jacks.jpeg',
+                    price: 0,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavBar(
