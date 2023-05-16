@@ -21,7 +21,7 @@ class _ExercisePageState extends State<ExercisePage> {
         child: Column(
           children: [
             if (widget.exercise == 'Pullups') ...[
-              Image.network('https://fitnessprogramer.com/wp-content/uploads/2021/02/Pull-up.gif'),
+              Image.asset('assets/Pull_up.gif'),
               const SizedBox(
                 height: 25,
               ),
@@ -35,7 +35,7 @@ class _ExercisePageState extends State<ExercisePage> {
               ),
             ],
             if (widget.exercise == 'Bench Dip') ...[
-              Image.network('https://gymvisual.com/img/p/1/4/5/3/0/14530.gif'),
+              Image.asset('assets/Bench_dip.gif'),
               const SizedBox(
                 height: 25,
               ),
@@ -49,7 +49,7 @@ class _ExercisePageState extends State<ExercisePage> {
               ),
             ],
             if (widget.exercise == 'Lateral Raise') ...[
-              Image.network('https://gymvisual.com/img/p/1/9/1/5/1/19151.gif'),
+              Image.asset('assets/Lateral_raise.gif'),
               const SizedBox(
                 height: 25,
               ),

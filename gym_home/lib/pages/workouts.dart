@@ -140,7 +140,7 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
           children: [
             ListTile(
               leading: const Icon(Icons.fitness_center),
-              title: const Text('Workout #1'),
+              title: const Text('Workout #1\nChest, triceps and shoulders'),
               onTap: () {
                 showDialog(
                   context: context,
@@ -149,9 +149,12 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
                 );
               },
             ),
+            const SizedBox(
+              height: 20,
+            ),
             ListTile(
               leading: const Icon(Icons.fitness_center),
-              title: const Text('Workout #2'),
+              title: const Text('Workout #2\nBack and biceps'),
               onTap: () {
                 showDialog(
                   context: context,
@@ -160,9 +163,12 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
                 );
               },
             ),
+            const SizedBox(
+              height: 20,
+            ),
             ListTile(
               leading: const Icon(Icons.fitness_center),
-              title: const Text('Workout #3'),
+              title: const Text('Workout #3\nHip and calves'),
               onTap: () {
                 showDialog(
                   context: context,
