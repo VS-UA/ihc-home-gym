@@ -67,6 +67,9 @@ flutter:
      - assets/jumping-jacks.jpeg
      - assets/lying-legs-raise.jpg
      - assets/push-ups.jpg
+     - assets/Pull_up.gif
+     - assets/Bench_dip.gif
+     - assets/Lateral_raise.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

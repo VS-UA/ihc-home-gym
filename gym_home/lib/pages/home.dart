@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
-              const HomeSlider(
+              HomeSlider(
                 items: [
                   Item(
                     name: 'Jumping Jacks',
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
-              const HomeSlider(
+              HomeSlider(
                 items: [
                   Item(
                     name: 'Jumping Jacks',
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
-              const HomeSlider(
+              HomeSlider(
                 items: [
                   Item(
                     name: 'Jumping Jacks',

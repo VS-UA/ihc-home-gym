@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_home/pages/exercise.dart';
 import 'package:gym_home/pages/home.dart';
 import 'package:gym_home/pages/bottom_bar.dart';
 import 'package:gym_home/pages/shop.dart';
@@ -37,18 +38,57 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          if (workout == 1) ...[
-            const Text("Pullups"),
+          if (workout == 1) ...[//15min
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.orange.shade300, // background
+                onPrimary: Colors.black, // foreground
+              ),
+              child: const Text("Pullups"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ExercisePage("Pullups")),
+                );
+              },
+            ),
             const Text("2 sets of 8-10 reps"),
             const Text(""),
-            const Text("Bench Dip"),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.orange.shade300, // background
+                onPrimary: Colors.black, // foreground
+              ),
+              child: const Text("Bench Dip"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ExercisePage("Bench Dip")),
+                );
+              },
+            ),
             const Text("3 sets of 10-12 reps"),
             const Text(""),
-            const Text("Lateral Raise"),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.orange.shade300, // background
+                onPrimary: Colors.black, // foreground
+              ),
+              child: const Text("Lateral Raise"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ExercisePage("Lateral Raise")),
+                );
+              },
+            ),
             const Text("5 sets of 8-10 reps"),
             const Text("\n"),
           ],
-          if (workout == 2) ...[
+          if (workout == 2) ...[//20min
             const Text("Pulley Row"),
             const Text("4 sets of 10-12 reps"),
             const Text(""),
@@ -59,7 +99,7 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
             const Text("5 sets of 5-7 reps"),
             const Text("\n"),
           ],
-          if (workout == 3) ...[
+          if (workout == 3) ...[//30min
             const Text("Squat"),
             const Text("4 sets of 12-15 reps"),
             const Text(""),
@@ -101,7 +141,7 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
           children: [
             ListTile(
               leading: const Icon(Icons.fitness_center),
-              title: const Text('Workout #1'),
+              title: const Text('Workout #1\nChest, triceps and shoulders'),
               onTap: () {
                 showDialog(
                   context: context,
@@ -110,9 +150,12 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
                 );
               },
             ),
+            const SizedBox(
+              height: 20,
+            ),
             ListTile(
               leading: const Icon(Icons.fitness_center),
-              title: const Text('Workout #2'),
+              title: const Text('Workout #2\nBack and biceps'),
               onTap: () {
                 showDialog(
                   context: context,
@@ -121,9 +164,12 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
                 );
               },
             ),
+            const SizedBox(
+              height: 20,
+            ),
             ListTile(
               leading: const Icon(Icons.fitness_center),
-              title: const Text('Workout #3'),
+              title: const Text('Workout #3\nHip and calves'),
               onTap: () {
                 showDialog(
                   context: context,
