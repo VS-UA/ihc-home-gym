@@ -92,9 +92,8 @@ class _ShopPageState extends State<ShopPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text('Shopping'),
-        ),
+        title: const Text('Shopping'),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

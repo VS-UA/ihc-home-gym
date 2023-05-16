@@ -35,6 +35,7 @@ class _TrackingPageState extends State<TrackingPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Tracking"),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
