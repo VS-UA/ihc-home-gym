@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_home/pages/bottom_bar.dart';
+import 'package:gym_home/pages/cart.dart';
 import 'package:gym_home/pages/shop.dart';
 import 'package:gym_home/pages/tracking.dart';
 import 'package:gym_home/pages/workouts.dart';
@@ -38,16 +39,27 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("HomeGym"),
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart), 
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CartPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Container(
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Text(
                   'Trending exercises',
@@ -73,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Text(
                   'Meals',
@@ -99,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Text(
                   'Equipment for you',
