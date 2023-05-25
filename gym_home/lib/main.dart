@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gym_home/pages/login.dart';
 
 void main() {
@@ -11,7 +12,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Home Gym App',
       theme: ThemeData(
         // This is the theme of your application.
