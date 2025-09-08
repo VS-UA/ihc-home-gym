@@ -1,2 +1,2 @@
 # ihc-home-gym
-Repositório para o trabalho de IHC.
+Human Computer Interaction course project of an app for home gym users developed with Dart.
